@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Điều khiển Android</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div id="loadingOverlay" class="loading-overlay">
+  <div class="loading-spinner"></div>
+</div>
+  <!-- Tab Navigation -->
+  <div class="tab-container">
+    <div class="tab active" data-tab="thao-tac">Thao tác</div>
+    <div class="tab" data-tab="setting">Setting</div>
+    <div class="tab" data-tab="quan-ly-reg">Quản lý reg</div>
+    
+    <div style="margin-left: auto; display: flex; gap: 10px;">
+      <button class="button" style="background-color: #ff0000;">Bắt đầu</button>
+      <button class="button" style="background-color: #ff0000;">Lưu lại</button>
+    </div>
+  </div>
+  
+  <!-- Thao tác Tab Content -->
+  <div class="tab-content active" id="thao-tac">
+    <div class="header-buttons">
+      <button id="homeButton" class="button">Home</button>
+      <button id="enable4gButton" class="button">Bật 4G</button>
+      <button id="disable4gButton" class="button">Tắt 4G</button>
+      <button id="clearAllButton" class="button">Xóa tất cả</button>
+    </div>
+    
+    <div class="device-selector-container">
+      <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+        <label for="deviceList" style="font-weight: bold;">Chọn thiết bị:</label>
+        <button id="refreshAllDevicesButton" class="button" style="padding: 8px 15px;">Làm mới danh sách thiết bị</button>
+      </div>
+      
+      <div id="deviceList">
+        <div class="device-item">
+          <input type="checkbox" id="device-1" checked>
+          <label for="device-1">ce031713601eec770c</label>
+        </div>
+        <div class="device-item">
+          <input type="checkbox" id="device-2" checked>
+          <label for="device-2">ce03171301c0c93301</label>
+        </div>
+        <div class="device-item">
+          <input type="checkbox" id="device-3" checked>
+          <label for="device-3">ce041714350d0820c</label>
+        </div>
+        <div class="device-item">
+          <input type="checkbox" id="device-4" checked>
+          <label for="device-4">ce04171482dc91404</label>
+        </div>
+        <div class="device-item">
+          <input type="checkbox" id="device-5" checked>
+          <label for="device-5">ce05171508a4a73c05</label>
+        </div>
+      </div>
+    </div>
+    
+    <div class="content-container">
+      <div class="left-panel">
+        <button id="enableTimeButton" class="button">Bật múi giờ tự động</button>
+        
+        <div class="time-settings">
+          <div class="form-row">
+            <label for="regionSelect">Chọn vùng</label>
+            <input type="text" id="regionSelect" list="regionList" value="Antigua và Barbuda">
+            <datalist id="regionList">
+              <option value="Việt Nam"></option>
+              <option value="Antigua và Barbuda"></option>
+              <option value="Mỹ (New York)"></option>
+              <option value="Anh (London)"></option>
+            </datalist>
+          </div>
+          
+          <button id="saveRegionButton" class="button">Lưu</button>
+          
+          <div class="info-panel">
+            Thời gian thực tế tại Antigua và Barbuda:<br>
+            lúc 08:16:23 Thứ Bảy, 15 tháng 3, 2025
+          </div>
+        </div>
+        
+        <div class="time-settings">
+          <div class="form-row">
+            <label for="dateInput">Ngày</label>
+            <input type="text" id="dateInput" placeholder="DD/MM/YYYY" value="15/03/2025">
+          </div>
+          
+          <div class="form-row">
+            <label for="timeInput">Giờ</label>
+            <input type="text" id="timeInput" placeholder="HH:MM" value="19:37">
+          </div>
+          
+          <button id="saveTimeButton" class="button">Lưu</button>
+        </div>
+      </div>
+      
+      <div class="right-panel">
+        <div class="panel-title">Chỉnh DPI</div>
+        
+        <div class="dpi-container">
+          <input type="number" id="dpiInput1" placeholder="DPI giá trị 1" value="320">
+          <span class="dpi-arrow">⟷</span>
+          <input type="number" id="dpiInput2" placeholder="DPI giá trị 2" value="480">
+        </div>
+        
+        <div class="form-row">
+          <label for="loopTimeInput">Thời gian vòng lặp (ms)</label>
+          <input type="number" id="loopTimeInput" placeholder="Thời gian (ms)" value="5000" min="500">
+        </div>
+        
+        <button id="dpiButton" class="button">Chạy</button>
+        
+        <div id="status" style="margin-top: 15px; min-height: 50px;">
+          <div style="color: green; padding: 10px;">Đã chọn 5 thiết bị: ce031713601eec770c, ce03171301c0c93301, ce041714350d0820c, ce04171482dc91404, ce05171508a4a73c05</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Setting Tab Content -->
+  <div class="tab-content" id="setting">
+    <div class="setting-container">
+      <div class="setting-left-panel">
+        <!-- Info tài khoản -->
+        <div class="setting-section">
+          <div class="setting-section-title">Info tài khoản</div>
+          <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+            <button class="button">Sửa họ</button>
+            <button class="button">Sửa tên</button>
+            <button class="button">Sửa mật khẩu</button>
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <div style="font-weight: bold; margin-bottom: 10px;">Giới tính</div>
+            <label style="margin-right: 15px;">
+              <input type="radio" name="gender"> Nam
+            </label>
+            <label style="margin-right: 15px;">
+              <input type="radio" name="gender"> Nữ
+            </label>
+            <label>
+              <input type="radio" name="gender" checked> Ngẫu nhiên
+            </label>
+          </div>
+        </div>
+        
+        <!-- Kiểu very -->
+        <div class="setting-section">
+          <div class="setting-section-title">Kiểu very</div>
+          <div style="display: flex; align-items: center; margin-bottom: 10px;">
+            <label style="margin-right: 15px;">
+              <input type="radio" name="very-type"> Không mồi số-mail gì
+            </label>
+            <label style="margin-right: 15px;">
+              <input type="radio" name="very-type">
+              Mồi số điện thoại
+              <button class="button" style="padding: 3px; margin-left: 5px; font-size: 12px;">📁</button>
+            </label>
+            <label>
+              <input type="radio" name="very-type" checked>
+              Mồi mail
+              <button class="button" style="padding: 3px; margin-left: 5px; font-size: 12px;">📁</button>
+            </label>
+          </div>
+        </div>
+        
+        <!-- Xác minh OTP -->
+        <div class="setting-section">
+          <div class="setting-section-title">Xác minh OTP</div>
+          
+          <div class="verification-tabs">
+            <div class="verification-tab active" data-vtab="very-sdt">Very SĐT</div>
+            <div class="verification-tab" data-vtab="very-mail">Very Mail</div>
+            <div class="verification-tab" data-vtab="very-mail-free">Very Mail Free</div>
+          </div>
+          
+          <div class="verification-content active" id="very-sdt-content">
+            <div class="verification-option">
+              <label>
+                <input type="radio" name="phone-api" checked> Thuesim.app
+              </label>
+              <input type="text" style="width: 250px; margin-left: 10px;">
+            </div>
+            
+            <div class="verification-option">
+              <label>
+                <input type="radio" name="phone-api"> Usotp.xyz
+              </label>
+              <input type="text" style="width: 250px; margin-left: 10px;">
+            </div>
+            
+            <div class="verification-option">
+              <label>
+                <input type="radio" name="phone-api"> Muasms.com
+              </label>
+              <input type="text" style="width: 250px; margin-left: 10px;">
+            </div>
+          </div>
+          
+          <div class="verification-content" id="very-mail-content" style="display:none;">
+            <!-- Mail verification options would go here -->
+            <div style="padding: 20px; text-align: center;">Very Mail content</div>
+          </div>
+          
+          <div class="verification-content" id="very-mail-free-content" style="display:none;">
+            <!-- Free mail verification options would go here -->
+            <div style="padding: 20px; text-align: center;">Very Mail Free content</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="setting-right-panel">
+        <!-- Setting Reg -->
+        <div style="margin-bottom: 30px;">
+          <div class="panel-title">Setting Reg</div>
+          
+          <div class="form-row">
+            <label>Thời gian bấm nút (mili giây)</label>
+            <div>
+              <input type="text" style="width: 80px;"> Đến <input type="text" style="width: 80px;">
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <label>Thời gian chờ OTP (mili giây)</label>
+            <input type="text">
+          </div>
+          
+          <div class="form-row">
+            <label>Reg xong nghỉ (mili giây)</label>
+            <input type="text">
+          </div>
+          
+          <div class="form-row">
+            <label>Up avatar</label>
+            <div>
+              <label style="margin-right: 15px;">
+                <input type="radio" name="avatar" checked> Có
+              </label>
+              <label>
+                <input type="radio" name="avatar"> Không
+              </label>
+              <button class="button" style="margin-left: 10px;">Folder ảnh</button>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <label>Backup</label>
+            <div>
+              <label style="margin-right: 15px;">
+                <input type="radio" name="backup" checked> Có
+              </label>
+              <label>
+                <input type="radio" name="backup"> Không
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Cấu hình tài khoản -->
+        <div class="account-config-panel">
+          <div class="account-config-title">Cấu hình tài khoản</div>
+          
+          <div style="margin-bottom: 15px;">
+            <label>Bật bảo mật 2 lớp (2FA)</label>
+            <label style="margin-left: 10px;">Delay lấy code 2FA:</label>
+            <input type="text" style="width: 60px;"> giây
+          </div>
+          
+          <div>
+            <div style="margin-bottom: 10px;">Tương tác sau khi Reg thành công</div>
+            
+            <div style="margin-bottom: 5px;">
+              <input type="checkbox" id="read-notifications">
+              <label for="read-notifications">Đọc thông báo</label>
+            </div>
+            
+            <div style="margin-bottom: 5px;">
+              <input type="checkbox" id="interact-newsfeed">
+              <label for="interact-newsfeed">Tương tác newfeed</label>
+            </div>
+            
+            <div>
+              <input type="checkbox" id="view-stories">
+              <label for="view-stories">Xem story</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Quản lý reg Tab Content -->
+  <div class="tab-content" id="quan-ly-reg">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Trạng thái</th>
+          <th>Tên máy</th>
+          <th>Kết quả</th>
+          <th>Họ</th>
+          <th>Tên</th>
+          <th>Mật khẩu</th>
+          <th>SĐT</th>
+          <th>Mail</th>
+          <th>UID</th>
+          <th>2FA</th>
+          <th>Cookie</th>
+          <th>Token</th>
+          <th>Proxy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Empty rows -->
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      </tbody>
+    </table>
+    
+    <div class="stats-container">
+      <div class="stats-box">
+        <div class="stats-title">THỐNG KÊ REG</div>
+        <div style="display: flex; gap: 20px;">
+          <div class="success-count">THÀNH CÔNG : 0</div>
+          <div class="fail-count">THẤT BẠI : 0</div>
+          <div class="retry-count">LÀM LẠI : 0</div>
+        </div>
+      </div>
+      
+      <div class="stats-box">
+        <div class="stats-title">FILE THÀNH CÔNG/THẤT BẠI</div>
+        <div class="file-buttons">
+          <button class="file-button">WIN VERIFY</button>
+          <button class="file-button">WIN NOVERY</button>
+          <button class="file-button">THẤT BẠI</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="ui/renderer.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
+
